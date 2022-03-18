@@ -2,6 +2,7 @@
 ::dont change /\ else u will probably regret it
 setlocal EnableDelayedExpansion
 set gameVersion=0.0.89
+set gameDirectory=%cd%
 call assets\translation\codes.cmd
 
 ::read config

@@ -1,10 +1,10 @@
 :display
 ::snake heading nigga
 for %%A in (1,2,3,4,5,6,7,8) do echo    !snakeLine%%A!
-if %joins%==1 echo %translation.menu.greetingHello% !playerName!%translation.menu.greetingFirstTime1%
-if not %joins%==1 echo %translation.menu.greetingHello% !playerName!%translation.menu.greetingNotFirstTime1% %joins% %translation.menu.greetingNotFirstTime2%
-if %playerName%==%root% echo Press F to enter root mode
-if not %playerName%==%root% echo.
+if %joins%==1 if defined playerName echo %translation.menu.greetingHello% !playerName!%translation.menu.greetingFirstTime1%
+if not %joins%==1 if defined playerName echo %translation.menu.greetingHello% !playerName!%translation.menu.greetingNotFirstTime1% %joins% %translation.menu.greetingNotFirstTime2%
+if "%playerName%"=="%root%" echo Press F to enter root mode
+if not "%playerName%"=="%root%" echo.
 
 ::play button selected
 if %menuSelection%==0 (
