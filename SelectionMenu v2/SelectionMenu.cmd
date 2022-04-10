@@ -31,7 +31,7 @@ for /l %%A in (1,1,!menuMaxOptions!) do if defined menuOption%%A (
       set "menuOption%%ABoxLine="
       call :getLength "!menuOption%%A!" menuOption%%ALenght
       for /l %%B in (1,1,!menuOption%%ALenght!) do ( set "menuOption%%ABoxLine=!menuOption%%ABoxLine!#" )
-) else ( exit /b 0 )
+)
 
 :display
 cls
