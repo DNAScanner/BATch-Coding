@@ -21,7 +21,27 @@ set "tld=ac ad ae af ag ai al am ao aq ar arpa as at au aw ax az ba bb bd be bf 
 cls
 set /p "domain=Enter domain(-s) (wo/ TLD) to check (seperate by SPACE): !colorYellow!" & <nul set /p "_=!colorReset!"
 set /p "tld=Enter the TLDs you'd like to check (seperate by SPACE, press ENTER for default): !colorYellow!" & <nul set /p "_=!colorReset!"
-set "startTime=%time:~0,-3%"
+choice /m:"Enable logging"
+if "!errorlevel!" equ "1" ( set /a "log=1" ) else ( set /a "log=0" )
+set "startTime=!time:~0,-3!"
+
+if "!log!" equ "1" (
+      >>domainavailability.cmd (
+            echo :: Domain Availability Check from !date!
+            echo :: Domains: !domain!
+            echo :: TLDs   : !tld!
+            echo.
+            echo @echo off
+            echo title Report !data!
+            echo echo This is a log of a domain availability Check
+            echo echo Date   : !colorYellow!!date!!colorReset! / !colorYellow!!startTime!!colorReset!
+            echo echo Domains: !colorYellow!!domain!!colorReset!
+            echo echo TLDs   : !colorYellow!!tld!!colorReset!
+            echo echo.
+            echo echo.
+            echo echo.
+      )
+)
 
 set "checkSeperator=--------------------DOMAIN--"
 for %%A in (!domain!) do (
@@ -37,6 +57,7 @@ set "checkSeperator=!checkSeperator:~0,-8!STATUS!checkSeperator:~-2!"
 
 
 echo !checkSeperator!
+if "!log!" equ "1" ( >>domainavailability.cmd echo echo -------------------------------------------------- )
 for %%A in (!domain!) do (
       for %%B in (!tld!) do (
             set /a "placeStatus=18 + !checkSeperatorLength!"
@@ -46,17 +67,21 @@ for %%A in (!domain!) do (
             for /f "tokens=*" %%C in ('ping %%A.%%B -l 1 -n 1 -w 750 ^| find "time"') do set "%%A.%%B_success=%%C"
             if "!%%A.%%B_success!" equ "" (
                   echo [!placeStatus!G ^|  !colorGreen!free!colorReset!
+                  if "!log!" equ "1" ( >>domainavailability.cmd echo echo  !colorRed!FREE!colorReset!  -  !colorYellow!%%A.%%B!colorReset! )
             ) else (
                   echo [!placeStatus!G ^|  !colorRed!taken!colorReset!
+                  if "!log!" equ "1" ( >>domainavailability.cmd echo echo !colorRed!TAKEN!colorReset!  -  !colorYellow!%%A.%%B!colorReset! )
             )
       )
 
       echo !checkSeperator!
+      if "!log!" equ "1" ( >>domainavailability.cmd echo echo -------------------------------------------------- )
 )
 
 echo.
-set "endTime=%time:~0,-3%"
+set "endTime=!time:~0,-3!"
 echo Finished checking - Started at !colorYellow!!startTime!!colorReset! and ended at !colorYellow!!endTime!!colorReset!
+if "!log!" equ "1" ( >>domainavailability.cmd echo echo Finished checking - Started at !colorYellow!!startTime!!colorReset! and ended at !colorYellow!!endTime!!colorReset! ^&^& ^>nul pause )
 
 >nul pause
 
