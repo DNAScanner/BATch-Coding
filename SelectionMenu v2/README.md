@@ -1,7 +1,7 @@
 # SelectionMenu v2
 
 ## About this project
-This project is an upgraded Version of the [original one](https://github.com/DNAScanner/BATch-Coding/tree/main/SelectionMenu), also by me.
+This project is an upgraded Version of the [original one](https://github.com/DNAScanner/BATch-Coding/tree/main/SelectionMenu), also by me
 
 
 ## How to use
@@ -12,4 +12,4 @@ This project is an upgraded Version of the [original one](https://github.com/DNA
 - Starting from `Line 83` you can add your code which will be executed if `Option1` is proceeded (`A`/`D`)
 
 
-Everywhere, where I mentioned `menuOption1`, it's just meant as an example. This will normally also work with `menuOption2`, `menuOption3`, etc.
+Everywhere, where I mentioned `menuOption1`, it's just meant as an example. This will normally also work with `menuOption2`, `menuOption3`, etc
