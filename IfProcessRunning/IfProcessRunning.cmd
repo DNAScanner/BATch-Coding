@@ -5,7 +5,7 @@ setlocal enableextensions
 set "pid=%~1"
 
 if not defined pid (
-      echo "Usage: %~n0 <PID>"
+      echo Usage: %~n0 ^<PID^>
       exit /b
 )
 
